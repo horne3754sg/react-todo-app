@@ -12,7 +12,9 @@ const TodoItems = [TodoItemData, TodoItemData, TodoItemData, TodoItemData]
 function App() {
   return (
     <div className='App'>
-      <TodoList items={TodoItems} />
+      <div className='container'>
+        <TodoList items={TodoItems} />
+      </div>
     </div>
   )
 }

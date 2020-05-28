@@ -4,7 +4,7 @@ import './List.scss'
 
 const TodoList = ({ items }) => {
   return (
-    <div>
+    <div className='todo-list'>
       {items.map((item, i) => {
         return <TodoItem key={i} text={item.text} />
       })}

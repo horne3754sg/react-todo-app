@@ -1,0 +1,13 @@
+.todo-item {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #f2f2f2;
+
+  .controls-container {
+    margin-left: auto;
+
+    > :not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
