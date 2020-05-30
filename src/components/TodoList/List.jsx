@@ -44,7 +44,12 @@ export default class TodoList extends Component {
 
     this.over = event.target
 
-    event.target.insertAdjacentElement('beforebegin', this.placeholder)
+    let dir = 'up' // this flag will be set by a function to detrmine direction of travel
+
+    event.target.parentNode.insertBefore(
+      this.placeholder,
+      dir === 'down' ? event.target.nextSibling : event.target
+    )
   }
 
   handleDragEnter = (event) => {
