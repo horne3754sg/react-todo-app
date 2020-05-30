@@ -3,11 +3,8 @@ import TodoItem from '../TodoItem/Item'
 
 import './List.scss'
 
-const TodoItemData = {
-  text: 'This is a todo item',
-}
 const TodoItems = [...Array(5).keys()].map((id) => {
-  return { id: id + 1, ...TodoItemData }
+  return { id: id + 1, text: `This is a todo item ${id + 1}` }
 })
 
 export default class TodoList extends Component {
@@ -25,6 +22,7 @@ export default class TodoList extends Component {
   }
 
   componentDidMount() {
+    console.log('mounting')
     this.setState({ todos: TodoItems })
   }
 
@@ -42,10 +40,11 @@ export default class TodoList extends Component {
 
     if (event.currentTarget === this.placeholder) return
 
-    if (event.target.classList.contains('todo-item')) {
-      event.target.insertAdjacentElement('beforebegin', this.placeholder)
-      console.log(event.target)
-    }
+    if (!event.target.classList.contains('todo-item')) return
+
+    this.over = event.target
+
+    event.target.insertAdjacentElement('beforebegin', this.placeholder)
   }
 
   handleDragEnter = (event) => {
@@ -57,7 +56,16 @@ export default class TodoList extends Component {
   }
 
   handleDrop = (event) => {
-    event.currentTarget.classList.remove('over')
+    event.target.classList.remove('over')
+    const { todos, draggedTodoId } = this.state
+
+    const item = todos.filter((item, i) => i === draggedTodoId)[0]
+    const from = todos.indexOf(item)
+    const to = Number(this.over.id)
+
+    todos.splice(to, 0, todos.splice(from, 1)[0])
+
+    this.setState({ todos })
   }
 
   handleDragEnd = (event) => {
@@ -76,7 +84,7 @@ export default class TodoList extends Component {
             <TodoItem
               key={i}
               id={i}
-              text={`${todo.text} ${i + 1}`}
+              text={`${todo.text}`}
               canDrag={true}
               onDragStart={this.handleDragStart}
               onDragEnd={this.handleDragEnd}

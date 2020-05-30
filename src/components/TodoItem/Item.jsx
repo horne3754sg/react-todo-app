@@ -5,6 +5,7 @@ import './Item.scss'
 const TodoItem = (props) => {
   return (
     <div
+      id={props.id}
       className='todo-item'
       draggable={props.canDrag}
       onDragStart={(event) => props.onDragStart(event, props.id)}
