@@ -41,10 +41,11 @@ export default class TodoList extends Component {
     this.dragged.style.display = 'none'
 
     if (event.currentTarget === this.placeholder) return
-    // this.over = event.target
-    if (event.target.classList.contains('todo-item'))
-      event.target.insertAdjacentElement('afterend', this.placeholder)
-    // event.target.parentNode.insertBefore(this.placeholder, event.target)
+
+    if (event.target.classList.contains('todo-item')) {
+      event.target.insertAdjacentElement('beforebegin', this.placeholder)
+      console.log(event.target)
+    }
   }
 
   handleDragEnter = (event) => {
@@ -56,13 +57,12 @@ export default class TodoList extends Component {
   }
 
   handleDrop = (event) => {
-    console.log(event)
     event.currentTarget.classList.remove('over')
   }
 
   handleDragEnd = (event) => {
-    console.log(event.currentTarget)
     this.dragged.style.display = 'flex'
+    this.placeholder.parentNode.removeChild(this.placeholder)
   }
 
   render() {
