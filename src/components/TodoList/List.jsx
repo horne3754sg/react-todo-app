@@ -16,7 +16,6 @@ export default class TodoList extends Component {
     }
 
     this.placeholder = document.createElement('div')
-    this.placeholder.className = 'todo-item'
     this.placeholder.className = 'placeholder'
     this.placeholder.innerText = 'Drop here'
   }
@@ -29,8 +28,7 @@ export default class TodoList extends Component {
   handleDragStart = (event, todoId) => {
     this.oldY = 0
     this.dragged = event.currentTarget
-    event.dataTransfer.effectAllowed = 'move'
-    event.dataTransfer.setData('text/html', event.currentTarget)
+    this.placeholder.style.height = this.dragged.clientHeight + 'px'
     this.setState({ draggedTodoId: todoId })
   }
 
@@ -39,9 +37,11 @@ export default class TodoList extends Component {
 
     this.dragged.style.display = 'none'
 
-    if (event.currentTarget === this.placeholder) return
-
-    if (!event.target.classList.contains('todo-item')) return
+    if (
+      event.currentTarget === this.placeholder ||
+      !event.target.classList.contains('todo-item')
+    )
+      return
 
     this.over = event.target
 
@@ -72,8 +72,9 @@ export default class TodoList extends Component {
     event.target.classList.remove('over')
     const { todos, draggedTodoId } = this.state
 
-    const item = todos.filter((item, i) => i === draggedTodoId)[0]
-    const from = todos.indexOf(item)
+    const from = todos.indexOf(
+      todos.filter((item, i) => i === draggedTodoId)[0]
+    )
     const to = Number(this.over.id)
 
     todos.splice(to, 0, todos.splice(from, 1)[0])
@@ -95,7 +96,7 @@ export default class TodoList extends Component {
         {this.state.todos.map((todo, i) => {
           return (
             <TodoItem
-              key={i}
+              key={`todo-${i}`}
               id={i}
               text={`${todo.text}`}
               canDrag={true}
