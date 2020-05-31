@@ -27,6 +27,7 @@ export default class TodoList extends Component {
   }
 
   handleDragStart = (event, todoId) => {
+    this.oldY = 0
     this.dragged = event.currentTarget
     event.dataTransfer.effectAllowed = 'move'
     event.dataTransfer.setData('text/html', event.currentTarget)
@@ -44,12 +45,19 @@ export default class TodoList extends Component {
 
     this.over = event.target
 
-    let dir = 'up' // this flag will be set by a function to detrmine direction of travel
-
+    let direction = this.getDragDirection()
     event.target.parentNode.insertBefore(
       this.placeholder,
-      dir === 'down' ? event.target.nextSibling : event.target
+      direction === 'down' ? event.target.nextSibling : event.target
     )
+  }
+
+  getDragDirection = () => {
+    let direction = 'none'
+    if (window.event.pageY > this.oldY) direction = 'down'
+    else if (window.event.pageY < this.oldY) direction = 'up'
+    this.oldY = window.event.clientY
+    return direction
   }
 
   handleDragEnter = (event) => {
