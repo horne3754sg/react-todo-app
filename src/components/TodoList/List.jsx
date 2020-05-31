@@ -21,7 +21,6 @@ export default class TodoList extends Component {
   }
 
   componentDidMount() {
-    console.log('mounting')
     this.setState({ todos: TodoItems })
   }
 
