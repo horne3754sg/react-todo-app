@@ -38,11 +38,11 @@ export default class TodoList extends Component {
   }
 
   getDragDirection = () => {
-    const { pageY, clientY } = window.event
-    this.oldY = clientY
-    if (pageY > this.oldY) return 'down'
-    else if (pageY < this.oldY) return 'up'
-    else return 'none'
+    let direction = 'none'
+    if (window.event.pageY > this.oldY) direction = 'down'
+    else if (window.event.pageY < this.oldY) direction = 'up'
+    this.oldY = window.event.clientY
+    return direction
   }
 
   handleDragEnter = (event) => {
