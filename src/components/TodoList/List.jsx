@@ -3,32 +3,19 @@ import TodoItem from '../TodoItem/Item'
 
 import './List.scss'
 
-const TodoItems = [...Array(5).keys()].map((id) => {
-  return { id: id + 1, text: `This is a todo item ${id + 1}` }
-})
-
 export default class TodoList extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      todos: [],
-      draggedTodoId: null,
-    }
-
     this.placeholder = document.createElement('div')
     this.placeholder.className = 'placeholder'
     this.placeholder.innerText = 'Drop here'
   }
 
-  componentDidMount() {
-    this.setState({ todos: TodoItems })
-  }
-
   handleDragStart = (event, todoId) => {
     this.oldY = 0
     this.dragged = event.currentTarget
+    this.draggedTodoId = todoId
     this.placeholder.style.height = this.dragged.clientHeight + 'px'
-    this.setState({ draggedTodoId: todoId })
   }
 
   handleDragOver = (event) => {
@@ -40,8 +27,8 @@ export default class TodoList extends Component {
     )
       return
 
-    this.dragged.style.display = 'none'
     this.over = event.target
+    this.dragged.style.display = 'none'
 
     let direction = this.getDragDirection()
     event.target.parentNode.insertBefore(
@@ -51,11 +38,11 @@ export default class TodoList extends Component {
   }
 
   getDragDirection = () => {
-    let direction = 'none'
-    if (window.event.pageY > this.oldY) direction = 'down'
-    else if (window.event.pageY < this.oldY) direction = 'up'
-    this.oldY = window.event.clientY
-    return direction
+    const { pageY, clientY } = window.event
+    this.oldY = clientY
+    if (pageY > this.oldY) return 'down'
+    else if (pageY < this.oldY) return 'up'
+    else return 'none'
   }
 
   handleDragEnter = (event) => {
@@ -67,22 +54,30 @@ export default class TodoList extends Component {
   }
 
   handleDrop = (event) => {
-    event.target.classList.remove('over')
-    const { todos, draggedTodoId } = this.state
+    const { todos } = this.props
 
     const from = todos.indexOf(
-      todos.filter((item, i) => i === draggedTodoId)[0]
+      todos.filter((item, i) => i === this.draggedTodoId)[0]
     )
     const to = Number(this.over.id)
 
     todos.splice(to, 0, todos.splice(from, 1)[0])
 
-    this.setState({ todos })
+    event.target.classList.remove('over')
+
+    this.props.updateTodos(todos)
   }
 
   handleDragEnd = (event) => {
     this.dragged.style.display = 'flex'
     this.placeholder.parentNode.removeChild(this.placeholder)
+    this.resetDragProps()
+  }
+
+  resetDragProps() {
+    this.oldY = 0
+    this.dragged = null
+    this.draggedTodoId = 0
   }
 
   render() {
@@ -91,7 +86,7 @@ export default class TodoList extends Component {
         className='todo-list'
         onDragOver={(event) => this.handleDragOver(event)}
         onDrop={(event) => this.handleDrop(event)}>
-        {this.state.todos.map((todo, i) => {
+        {this.props.todos.map((todo, i) => {
           return (
             <TodoItem
               key={`todo-${i}`}
