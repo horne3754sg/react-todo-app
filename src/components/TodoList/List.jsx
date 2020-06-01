@@ -34,14 +34,13 @@ export default class TodoList extends Component {
   handleDragOver = (event) => {
     event.preventDefault()
 
-    this.dragged.style.display = 'none'
-
     if (
       event.currentTarget === this.placeholder ||
       !event.target.classList.contains('todo-item')
     )
       return
 
+    this.dragged.style.display = 'none'
     this.over = event.target
 
     let direction = this.getDragDirection()
