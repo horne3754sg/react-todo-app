@@ -11,7 +11,7 @@ const TodoItem = (props) => {
       onDragStart={(event) => props.onDragStart(event, props.id)}
       onDragEnd={(event) => props.onDragEnd(event)}>
       <div className='content-container'>{props.text}</div>
-      <div className='controls-container'>
+      <div className='actions-container'>
         <button className='edit'>Edit</button>
         <button className='delete'>Delete</button>
       </div>

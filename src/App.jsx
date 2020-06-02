@@ -24,10 +24,21 @@ class App extends Component {
     this.setState({ todos })
   }
 
+  handleSubmitTodo = (event) => {
+    event.preventDefault()
+    console.log(event.target)
+  }
+
   render() {
     return (
       <div className='App'>
         <div className='container'>
+          <div className='controls-container'>
+            <form onSubmit={this.handleSubmitTodo}>
+              <Input />
+              <button>Add Todo</button>
+            </form>
+          </div>
           <TodoList todos={this.state.todos} updateTodos={this.updateTodos} />
         </div>
       </div>
