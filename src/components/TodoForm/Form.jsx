@@ -29,7 +29,10 @@ class TodoForm extends Form {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput('title', 'Title')}
+          {this.renderInput({
+            name: 'title',
+            placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
+          })}
           <div className='button-group'>{this.renderButton('Submit')}</div>
         </form>
       </div>

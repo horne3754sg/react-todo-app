@@ -55,8 +55,9 @@ class Form extends Component {
     )
   }
 
-  renderInput(name, label, type = 'text') {
+  renderInput(args) {
     const { data, errors } = this.state
+    const { name, label, placeholder, type = 'text' } = args
 
     return (
       <Input
@@ -66,6 +67,7 @@ class Form extends Component {
         value={data[name]}
         onChange={this.handleChange}
         error={errors[name]}
+        placeholder={placeholder}
       />
     )
   }

@@ -54,18 +54,18 @@ export default class TodoList extends Component {
   }
 
   handleDrop = (event) => {
-    const { todos } = this.props
+    const { tasks } = this.props
 
-    const from = todos.indexOf(
-      todos.filter((item, i) => i === this.draggedTodoId)[0]
+    const from = tasks.indexOf(
+      tasks.filter((item, i) => i === this.draggedTodoId)[0]
     )
     const to = Number(this.over.id)
 
-    todos.splice(to, 0, todos.splice(from, 1)[0])
+    tasks.splice(to, 0, tasks.splice(from, 1)[0])
 
     event.target.classList.remove('over')
 
-    this.props.updateTodos(todos)
+    this.props.updateTasks(tasks)
   }
 
   handleDragEnd = (event) => {
@@ -86,12 +86,12 @@ export default class TodoList extends Component {
         className='todo-list'
         onDragOver={(event) => this.handleDragOver(event)}
         onDrop={(event) => this.handleDrop(event)}>
-        {this.props.todos.map((todo, i) => {
+        {this.props.tasks.map((task, i) => {
           return (
             <TodoItem
-              key={`todo-${i}`}
               id={i}
-              title={`${todo.title}`}
+              key={`todo-${i}`}
+              title={`${task.title}`}
               canDrag={true}
               onDragStart={this.handleDragStart}
               onDragEnd={this.handleDragEnd}
