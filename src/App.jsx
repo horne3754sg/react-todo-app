@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import TodoForm from './components/TodoForm/Form'
 import TodoList from './components/TodoList/List'
+
+import './Reset.scss'
 import './App.scss'
 
 const TodoItems = [...Array(5).keys()].map((id) => {
