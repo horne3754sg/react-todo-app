@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Input from './components/common/input'
 import TodoList from './components/TodoList/List'
 
 import './App.scss'
