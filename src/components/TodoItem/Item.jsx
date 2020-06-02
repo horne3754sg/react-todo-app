@@ -10,7 +10,7 @@ const TodoItem = (props) => {
       draggable={props.canDrag}
       onDragStart={(event) => props.onDragStart(event, props.id)}
       onDragEnd={(event) => props.onDragEnd(event)}>
-      <div className='content-container'>{props.text}</div>
+      <div className='content-container'>{props.title}</div>
       <div className='actions-container'>
         <button className='edit'>Edit</button>
         <button className='delete'>Delete</button>

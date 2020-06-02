@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import Input from './components/common/input'
+import TodoForm from './components/TodoForm/Form'
 import TodoList from './components/TodoList/List'
-
 import './App.scss'
 
 const TodoItems = [...Array(5).keys()].map((id) => {
-  return { id: id + 1, text: `This is a todo item ${id + 1}` }
+  return { id, title: `This is a todo item ${id + 1}` }
 })
 
 class App extends Component {
@@ -24,20 +23,12 @@ class App extends Component {
     this.setState({ todos })
   }
 
-  handleSubmitTodo = (event) => {
-    event.preventDefault()
-    console.log(event.target)
-  }
-
   render() {
     return (
       <div className='App'>
         <div className='container'>
           <div className='controls-container'>
-            <form onSubmit={this.handleSubmitTodo}>
-              <Input />
-              <button>Add Todo</button>
-            </form>
+            <TodoForm todos={this.state.todos} updateTodos={this.updateTodos} />
           </div>
           <TodoList todos={this.state.todos} updateTodos={this.updateTodos} />
         </div>

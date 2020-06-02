@@ -91,7 +91,7 @@ export default class TodoList extends Component {
             <TodoItem
               key={`todo-${i}`}
               id={i}
-              text={`${todo.text}`}
+              title={`${todo.title}`}
               canDrag={true}
               onDragStart={this.handleDragStart}
               onDragEnd={this.handleDragEnd}
