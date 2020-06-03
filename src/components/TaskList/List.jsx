@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import TodoItem from '../TodoItem/Item'
+import TaskItem from '../TaskItem/Item'
 
 import './List.scss'
 
-export default class TodoList extends Component {
+class TaskList extends Component {
   constructor(props) {
     super(props)
     this.placeholder = document.createElement('div')
@@ -88,7 +88,7 @@ export default class TodoList extends Component {
         onDrop={(event) => this.handleDrop(event)}>
         {this.props.tasks.map((task, i) => {
           return (
-            <TodoItem
+            <TaskItem
               id={i}
               key={`todo-${i}`}
               title={`${task.title}`}
@@ -104,3 +104,5 @@ export default class TodoList extends Component {
     )
   }
 }
+
+export default TaskList

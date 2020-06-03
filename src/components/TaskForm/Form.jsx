@@ -5,7 +5,7 @@ import { saveTask } from '../../services/taskService'
 
 import './Form.scss'
 
-class TodoForm extends Form {
+class TaskForm extends Form {
   state = {
     data: {
       title: '',
@@ -42,4 +42,4 @@ class TodoForm extends Form {
   }
 }
 
-export default TodoForm
+export default TaskForm

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import TodoForm from './components/TodoForm/Form'
-import TodoList from './components/TodoList/List'
+import TodoForm from './components/TaskForm/Form'
+import TodoList from './components/TaskList/List'
 
 import { getTasks } from './services/taskService'
 

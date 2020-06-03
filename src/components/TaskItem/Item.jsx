@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Item.scss'
 
-const TodoItem = (props) => {
+const TaskItem = (props) => {
   return (
     <div
       id={props._id}
@@ -21,4 +21,4 @@ const TodoItem = (props) => {
   )
 }
 
-export default TodoItem
+export default TaskItem
