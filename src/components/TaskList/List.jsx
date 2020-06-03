@@ -23,7 +23,7 @@ class TaskList extends Component {
 
     if (
       event.currentTarget === this.placeholder ||
-      !event.target.classList.contains('todo-item')
+      !event.target.classList.contains('task-item')
     )
       return
 
@@ -85,14 +85,14 @@ class TaskList extends Component {
   render() {
     return (
       <div
-        className='todo-list'
+        className='task-list'
         onDragOver={(event) => this.handleDragOver(event)}
         onDrop={(event) => this.handleDrop(event)}>
         {this.props.tasks.map((task, i) => {
           return (
             <TaskItem
               id={i}
-              key={`todo-${i}`}
+              key={`task-${i}`}
               title={`${task.title}`}
               canDrag={true}
               onDragStart={this.handleDragStart}

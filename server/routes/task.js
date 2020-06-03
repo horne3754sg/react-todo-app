@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  const tasks = await Task.find().sort({ created: -1 })
+  const tasks = await Task.find().sort({ createdAt: -1 })
   res.send(tasks)
 })
 

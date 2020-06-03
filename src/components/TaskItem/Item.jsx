@@ -5,10 +5,10 @@ import './Item.scss'
 const TaskItem = (props) => {
   return (
     <div
-      id={props._id}
-      className='todo-item'
+      id={props.id}
+      className='task-item'
       draggable={props.canDrag}
-      onDragStart={(event) => props.onDragStart(event, props._id)}
+      onDragStart={(event) => props.onDragStart(event, props.id)}
       onDragEnd={(event) => props.onDragEnd(event)}>
       <div className='content-container'>
         <div className='task-content-text'>{props.title}</div>
