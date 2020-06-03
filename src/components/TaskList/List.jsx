@@ -11,10 +11,10 @@ class TaskList extends Component {
     this.placeholder.innerText = 'Drop here'
   }
 
-  handleDragStart = (event, todoId) => {
+  handleDragStart = (event, taskId) => {
     this.oldY = 0
     this.dragged = event.currentTarget
-    this.draggedTodoId = todoId
+    this.draggedTaskId = taskId
     this.placeholder.style.height = this.dragged.clientHeight + 'px'
   }
 
@@ -57,10 +57,12 @@ class TaskList extends Component {
     const { tasks } = this.props
 
     const from = tasks.indexOf(
-      tasks.filter((item, i) => i === this.draggedTodoId)[0]
+      tasks.filter((item, i) => i === this.draggedTaskId)[0]
     )
     const to = Number(this.over.id)
 
+    console.log('from', from)
+    console.log('to', to)
     tasks.splice(to, 0, tasks.splice(from, 1)[0])
 
     event.target.classList.remove('over')
@@ -77,7 +79,7 @@ class TaskList extends Component {
   resetDragProps() {
     this.oldY = 0
     this.dragged = null
-    this.draggedTodoId = 0
+    this.draggedTaskId = 0
   }
 
   render() {

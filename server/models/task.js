@@ -1,9 +1,12 @@
 const Joi = require('@hapi/joi')
 const mongoose = require('mongoose')
 
-const taskSchema = new mongoose.Schema({
-  title: String,
-})
+const taskSchema = new mongoose.Schema(
+  {
+    title: String,
+  },
+  { timestamps: true }
+)
 
 const Task = mongoose.model('Task', taskSchema)
 
