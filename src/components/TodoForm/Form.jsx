@@ -1,6 +1,7 @@
 import React from 'react'
 import Joi from 'joi-browser'
 import Form from '../common/form'
+import { saveTask } from '../../services/taskService'
 
 import './Form.scss'
 
@@ -16,13 +17,14 @@ class TodoForm extends Form {
     title: Joi.string().label('Title').required(),
   }
 
-  doSubmit = () => {
-    // this will connect to a service which will save the data
-    // for now, just add it to the array
-    const todos = this.props.todos
-    const newTodo = { id: todos.length, ...this.state.data }
-    todos.push(newTodo)
-    this.props.updateTodos(todos)
+  doSubmit = async () => {
+    const tasks = this.props.tasks
+    const { data: newTask } = await saveTask(this.state.data)
+
+    tasks.push(newTask)
+
+    // update the tasks which will refesh the view
+    this.props.updateTasks(tasks)
   }
 
   render() {
