@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TodoForm from './components/TaskForm/Form'
 import TodoList from './components/TaskList/List'
 
-import { getTasks } from './services/taskService'
+import { getTasks, saveAllTasks } from './services/taskService'
 
 import './Reset.scss'
 import './App.scss'
@@ -24,7 +24,8 @@ class App extends Component {
     this.setState({ tasks })
   }
 
-  updateTasks = (tasks) => {
+  updateTasks = async (tasks) => {
+    // await saveAllTasks(tasks)
     this.setState({ tasks })
   }
 

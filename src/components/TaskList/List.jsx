@@ -92,8 +92,8 @@ class TaskList extends Component {
           return (
             <TaskItem
               id={i}
-              key={`task-${i}`}
-              title={`${task.title}`}
+              key={task._id}
+              title={task.title}
               canDrag={true}
               onDragStart={this.handleDragStart}
               onDragEnd={this.handleDragEnd}

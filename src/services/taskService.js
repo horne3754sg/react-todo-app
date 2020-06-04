@@ -21,3 +21,7 @@ export function saveTask(task) {
   // otherwise save as new
   return http.post(apiEndpoint, task)
 }
+
+export function saveAllTasks(tasks) {
+  return http.put(`${apiEndpoint}/all`, tasks)
+}

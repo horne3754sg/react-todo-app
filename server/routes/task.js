@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  const tasks = await Task.find().sort({ createdAt: -1 })
+  const tasks = await Task.find()
   res.send(tasks)
 })
 
@@ -27,6 +27,11 @@ router.post('/', async (req, res) => {
 
   // Send it back to the client
   res.send(task)
+})
+
+router.put('/all', async (req, res) => {
+  // const tasks = Task.updateMany(req.body, { index: true })
+  res.send(req.body)
 })
 
 module.exports = router
