@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import TodoForm from './components/TaskForm/Form'
 import TodoList from './components/TaskList/List'
 
+import Icon from './components/Icons'
+
 import { getTasks, saveAllTasks } from './services/taskService'
 
 import './Reset.scss'
@@ -16,6 +18,7 @@ class App extends Component {
     super(props)
     this.state = {
       tasks: [],
+      showForm: false,
     }
   }
 
@@ -29,13 +32,30 @@ class App extends Component {
     this.setState({ tasks })
   }
 
+  showTaskForm = () => {
+    const showForm = !(this.state.showForm === true)
+    this.setState({ showForm })
+  }
+
   render() {
     return (
       <div className='App'>
         <div className='container'>
           <TodoList tasks={this.state.tasks} updateTasks={this.updateTasks} />
           <div className='controls-container'>
-            <TodoForm tasks={this.state.tasks} updateTasks={this.updateTasks} />
+            {!this.state.showForm && (
+              <button
+                className='primary-btn text-btn'
+                onClick={this.showTaskForm}>
+                <Icon icon='plus' /> add task
+              </button>
+            )}
+            {this.state.showForm && (
+              <TodoForm
+                tasks={this.state.tasks}
+                updateTasks={this.updateTasks}
+              />
+            )}
           </div>
         </div>
       </div>

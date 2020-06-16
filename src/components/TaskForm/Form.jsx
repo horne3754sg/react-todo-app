@@ -35,7 +35,7 @@ class TaskForm extends Form {
             name: 'title',
             placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
           })}
-          <div className='button-group'>{this.renderButton('Submit')}</div>
+          <div className='button-group'>{this.renderButton('Add Task')}</div>
         </form>
       </div>
     )
