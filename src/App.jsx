@@ -49,7 +49,7 @@ class App extends Component {
                 onClick={this.showTaskForm}>
                 <span className='icon-plus'>
                   <Icon icon='plus' size='14' />
-                </span>{' '}
+                </span>
                 <span className='btn-text'>add task</span>
               </button>
             )}
