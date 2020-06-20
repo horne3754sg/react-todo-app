@@ -16,35 +16,4 @@ body {
     margin-bottom: 20px;
     padding: 10px 0;
   }
-
-  button {
-    &.primary-btn {
-      font-size: 12px;
-      padding: 8px 20px;
-      background: #0078d4;
-      color: #fff;
-      font-weight: 600;
-      border-radius: 2px;
-      box-shadow: 0px 2px 4px -0.7px rgba(0, 0, 0, 0.25);
-      border: none;
-
-      &:hover {
-        text-decoration: none;
-        background: #106ebe;
-        cursor: pointer;
-      }
-
-      &.text-btn {
-        color: #888;
-        font-weight: normal;
-        background: none;
-        box-shadow: none;
-        &:hover {
-          color: #dd4b39;
-          background: none;
-          text-decoration: underline;
-        }
-      }
-    }
-  }
 }

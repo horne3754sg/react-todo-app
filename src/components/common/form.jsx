@@ -47,11 +47,16 @@ class Form extends Component {
     this.setState({ data, errors })
   }
 
-  renderButton(label) {
+  renderButton(label, options = {}) {
+    const { classes, requiredValidation, onClick } = options
     return (
-      <button disabled={this.validate()} className='btn btn-primary'>
-        {label}
-      </button>
+      <input
+        type='button'
+        disabled={requiredValidation ? this.validate() : ''}
+        className={`btn ${classes || ''}`.trim()}
+        value={label}
+        onClick={onClick}
+      />
     )
   }
 

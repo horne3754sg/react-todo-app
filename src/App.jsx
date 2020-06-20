@@ -45,15 +45,19 @@ class App extends Component {
           <div className='controls-container'>
             {!this.state.showForm && (
               <button
-                className='primary-btn text-btn'
+                className='primary-btn text-btn no-p-x'
                 onClick={this.showTaskForm}>
-                <Icon icon='plus' /> add task
+                <span className='icon-plus'>
+                  <Icon icon='plus' size='14' />
+                </span>{' '}
+                <span className='btn-text'>add task</span>
               </button>
             )}
             {this.state.showForm && (
               <TodoForm
                 tasks={this.state.tasks}
                 updateTasks={this.updateTasks}
+                onCancel={this.showTaskForm}
               />
             )}
           </div>

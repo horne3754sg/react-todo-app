@@ -25,17 +25,30 @@ class TaskForm extends Form {
 
     // update the tasks which will refesh the view
     this.props.updateTasks(tasks)
+
+    // close the form
+    this.props.onCancel()
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           {this.renderInput({
             name: 'title',
             placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
           })}
-          <div className='button-group'>{this.renderButton('Add Task')}</div>
+          <div className='button-group'>
+            {this.renderButton('Add Task', {
+              classes: 'primary-btn',
+              requiredValidation: true,
+              onClick: this.handleSubmit,
+            })}
+            {this.renderButton('Cancel', {
+              classes: 'cancel-btn text-btn',
+              onClick: this.props.onCancel,
+            })}
+          </div>
         </form>
       </div>
     )
