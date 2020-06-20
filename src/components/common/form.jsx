@@ -48,10 +48,11 @@ class Form extends Component {
   }
 
   renderButton(label, options = {}) {
-    const { classes, requiredValidation, onClick } = options
+    const { classes, fieldName, requiredValidation, onClick } = options
     return (
       <input
         type='button'
+        name={fieldName}
         disabled={requiredValidation ? this.validate() : ''}
         className={`btn ${classes || ''}`.trim()}
         value={label}

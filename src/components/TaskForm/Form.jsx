@@ -19,6 +19,8 @@ class TaskForm extends Form {
 
   doSubmit = async () => {
     const tasks = this.props.tasks
+
+    // save the new task
     const { data: newTask } = await saveTask(this.state.data)
 
     tasks.push(newTask)
@@ -41,11 +43,13 @@ class TaskForm extends Form {
           <div className='button-group'>
             {this.renderButton('Add Task', {
               classes: 'primary-btn',
+              fieldName: 'add-task',
               requiredValidation: true,
               onClick: this.handleSubmit,
             })}
             {this.renderButton('Cancel', {
               classes: 'cancel-btn text-btn',
+              fieldName: 'cancel',
               onClick: this.props.onCancel,
             })}
           </div>
