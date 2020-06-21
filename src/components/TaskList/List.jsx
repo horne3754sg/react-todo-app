@@ -105,7 +105,7 @@ class TaskList extends Component {
 
   render() {
     return (
-      <div
+      <ul
         className='task-list'
         onDragOver={(event) => this.handleDragOver(event)}
         onDrop={(event) => this.handleDrop(event)}>
@@ -116,16 +116,16 @@ class TaskList extends Component {
               taskId={task._id}
               key={task._id}
               title={task.title}
-              canDrag={true}
-              onDragStart={this.handleDragStart}
-              onDragEnd={this.handleDragEnd}
-              onDragEnter={this.handleDragEnter}
-              onDragLeave={this.handleDragLeave}
+              // canDrag={true}
+              // onDragStart={this.handleDragStart}
+              // onDragEnd={this.handleDragEnd}
+              // onDragEnter={this.handleDragEnter}
+              // onDragLeave={this.handleDragLeave}
               onDelete={this.handleDelete}
             />
           )
         })}
-      </div>
+      </ul>
     )
   }
 }

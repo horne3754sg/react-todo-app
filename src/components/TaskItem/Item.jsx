@@ -3,10 +3,9 @@ import React from 'react'
 import './Item.scss'
 
 const TaskItem = (props) => {
-  console.log(props)
   return (
-    <div
-      id={props.id}
+    <li
+      data-task-id={props.taskId}
       className='task-item'
       draggable={props.canDrag}
       onDragStart={(event) => props.onDragStart(event, props.id)}
@@ -20,7 +19,7 @@ const TaskItem = (props) => {
           Delete
         </button>
       </div>
-    </div>
+    </li>
   )
 }
 
