@@ -25,3 +25,7 @@ export function saveTask(task) {
 export function saveAllTasks(tasks) {
   return http.put(`${apiEndpoint}/all`, tasks)
 }
+
+export function deleteTask(taskId) {
+  return http.delete(taskUrl(taskId))
+}

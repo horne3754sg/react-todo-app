@@ -3,6 +3,7 @@ import React from 'react'
 import './Item.scss'
 
 const TaskItem = (props) => {
+  console.log(props)
   return (
     <div
       id={props.id}
@@ -15,7 +16,9 @@ const TaskItem = (props) => {
       </div>
       <div className='actions-container'>
         <button className='edit'>Edit</button>
-        <button className='delete'>Delete</button>
+        <button className='delete' onClick={() => props.onDelete(props.taskId)}>
+          Delete
+        </button>
       </div>
     </div>
   )

@@ -34,4 +34,12 @@ router.put('/all', async (req, res) => {
   res.send(req.body)
 })
 
+router.delete('/:id', async (req, res) => {
+  const task = await Task.findByIdAndDelete({ _id: req.params.id })
+
+  if (!task) return res.status(404).send('The task could not be found.')
+
+  res.send(task)
+})
+
 module.exports = router

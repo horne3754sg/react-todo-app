@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ tasks })
   }
 
-  showTaskForm = () => {
+  toggleTaskForm = () => {
     const showForm = !(this.state.showForm === true)
     this.setState({ showForm })
   }
@@ -41,12 +41,16 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='container'>
-          <TodoList tasks={this.state.tasks} updateTasks={this.updateTasks} />
+          <TodoList
+            tasks={this.state.tasks}
+            updateTasks={this.updateTasks}
+            deleteTask={this.deleteTask}
+          />
           <div className='controls-container'>
             {!this.state.showForm && (
               <button
                 className='primary-btn text-btn no-p-x'
-                onClick={this.showTaskForm}>
+                onClick={this.toggleTaskForm}>
                 <span className='icon-plus'>
                   <Icon icon='plus' size='14' />
                 </span>
@@ -57,7 +61,7 @@ class App extends Component {
               <TodoForm
                 tasks={this.state.tasks}
                 updateTasks={this.updateTasks}
-                onCancel={this.showTaskForm}
+                onCancel={this.toggleTaskForm}
               />
             )}
           </div>

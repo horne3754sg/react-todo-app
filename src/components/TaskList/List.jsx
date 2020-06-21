@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import TaskItem from '../TaskItem/Item'
 
+import { deleteTask } from '../../services/taskService'
+
 import './List.scss'
 
 class TaskList extends Component {
@@ -54,7 +56,7 @@ class TaskList extends Component {
   }
 
   handleDrop = (event) => {
-    const { tasks } = this.props
+    const { tasks, updateTasks } = this.props
 
     const from = tasks.indexOf(
       tasks.filter((item, i) => i === this.draggedTaskId)[0]
@@ -67,7 +69,7 @@ class TaskList extends Component {
 
     event.target.classList.remove('over')
 
-    this.props.updateTasks(tasks)
+    updateTasks(tasks)
   }
 
   handleDragEnd = (event) => {
@@ -82,6 +84,25 @@ class TaskList extends Component {
     this.draggedTaskId = 0
   }
 
+  handleDelete = async (taskId) => {
+    const { tasks: originalTasks, updateTasks } = this.props
+
+    // filter out the task and update the state
+    const tasks = originalTasks.filter((t) => t._id !== taskId)
+    updateTasks(tasks)
+
+    // then run the API request to delete the item
+    try {
+      await deleteTask(taskId)
+    } catch (ex) {
+      // if we have an error, return the state back to its original state
+      if (ex.response && ex.response.status === 404)
+        console.log('Task has already been deleted.')
+
+      updateTasks(originalTasks)
+    }
+  }
+
   render() {
     return (
       <div
@@ -92,6 +113,7 @@ class TaskList extends Component {
           return (
             <TaskItem
               id={i}
+              taskId={task._id}
               key={task._id}
               title={task.title}
               canDrag={true}
@@ -99,6 +121,7 @@ class TaskList extends Component {
               onDragEnd={this.handleDragEnd}
               onDragEnter={this.handleDragEnter}
               onDragLeave={this.handleDragLeave}
+              onDelete={this.handleDelete}
             />
           )
         })}
