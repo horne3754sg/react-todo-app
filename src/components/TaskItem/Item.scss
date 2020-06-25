@@ -1,34 +1,36 @@
 .task-item {
-  display: flex;
-  padding: 10px 0;
-  border-bottom: 1px solid #f2f2f2;
-  box-sizing: border-box;
+  .task-container {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #f2f2f2;
+    box-sizing: border-box;
 
-  .actions-container {
-    margin-left: auto;
+    .actions-container {
+      margin-left: auto;
 
-    button {
-      background: none;
-      border: none;
-      padding: 5px;
-      color: #888;
-      font-size: 14px;
+      button {
+        background: none;
+        border: none;
+        padding: 5px;
+        color: #888;
+        font-size: 14px;
 
-      &:hover {
-        color: #dd4b39;
-        cursor: pointer;
-        text-decoration: none;
+        &:hover {
+          color: #dd4b39;
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+
+      > :not(:last-child) {
+        margin-right: 5px;
       }
     }
-
-    > :not(:last-child) {
-      margin-right: 5px;
-    }
   }
-}
 
-.placeholder {
-  padding: 10px;
-  background: #ffff11;
-  box-sizing: border-box;
+  .placeholder {
+    padding: 10px;
+    background: #ffff11;
+    box-sizing: border-box;
+  }
 }

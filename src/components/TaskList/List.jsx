@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TaskItem from '../TaskItem/Item'
-
 import { deleteTask } from '../../services/taskService'
 
 import './List.scss'
@@ -109,13 +108,11 @@ class TaskList extends Component {
         className='task-list'
         onDragOver={(event) => this.handleDragOver(event)}
         onDrop={(event) => this.handleDrop(event)}>
-        {this.props.tasks.map((task, i) => {
+        {this.props.tasks.map((task) => {
           return (
             <TaskItem
-              id={i}
-              taskId={task._id}
               key={task._id}
-              title={task.title}
+              task={task}
               // canDrag={true}
               // onDragStart={this.handleDragStart}
               // onDragEnd={this.handleDragEnd}

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import TodoForm from './components/TaskForm/Form'
-import TodoList from './components/TaskList/List'
-
-import Icon from './components/Icons'
-
+import TaskList from './components/TaskList/List'
+import TaskControls from './components/TaskControls/Controls'
 import { getTasks, saveAllTasks } from './services/taskService'
 
 import './Reset.scss'
@@ -41,30 +38,17 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='container'>
-          <TodoList
+          <TaskList
             tasks={this.state.tasks}
             updateTasks={this.updateTasks}
             deleteTask={this.deleteTask}
           />
-          <div className='controls-container'>
-            {!this.state.showForm && (
-              <button
-                className='primary-btn text-btn no-p-x'
-                onClick={this.toggleTaskForm}>
-                <span className='icon-plus'>
-                  <Icon icon='plus' size='14' />
-                </span>
-                <span className='btn-text'>add task</span>
-              </button>
-            )}
-            {this.state.showForm && (
-              <TodoForm
-                tasks={this.state.tasks}
-                updateTasks={this.updateTasks}
-                onCancel={this.toggleTaskForm}
-              />
-            )}
-          </div>
+          <TaskControls
+            showForm={this.state.showForm}
+            tasks={this.state.tasks}
+            updateTasks={this.updateTasks}
+            onToggle={this.toggleTaskForm}
+          />
         </div>
       </div>
     )

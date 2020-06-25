@@ -3,9 +3,9 @@ import Joi from 'joi-browser'
 import Form from '../common/form'
 import { saveTask } from '../../services/taskService'
 
-import './Form.scss'
+import './Forms.scss'
 
-class TaskForm extends Form {
+class EditTaskForm extends Form {
   state = {
     data: {
       title: '',
@@ -18,27 +18,26 @@ class TaskForm extends Form {
   }
 
   doSubmit = async () => {
-    const tasks = this.props.tasks
-
-    // save the new task
-    const { data: newTask } = await saveTask(this.state.data)
-
-    tasks.push(newTask)
-
-    // update the tasks which will refesh the view
-    this.props.updateTasks(tasks)
-
-    // close the form
-    this.props.onCancel()
+    // const tasks = this.props.tasks
+    // // save the new task
+    // const { data: newTask } = await saveTask(this.state.data)
+    // tasks.push(newTask)
+    // // update the tasks which will refesh the view
+    // this.props.updateTasks(tasks)
+    // // close the form
+    // this.props.onCancel()
   }
 
   render() {
+    const { task } = this.props
+    // console.log(task.title)
     return (
       <div>
         <form>
           {this.renderInput({
             name: 'title',
             placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
+            value: task.title,
           })}
           <div className='button-group'>
             {this.renderButton('Add Task', {
@@ -59,4 +58,4 @@ class TaskForm extends Form {
   }
 }
 
-export default TaskForm
+export default EditTaskForm
