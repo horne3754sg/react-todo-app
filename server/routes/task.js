@@ -29,6 +29,10 @@ router.post('/', async (req, res) => {
   res.send(task)
 })
 
+router.put('/:id', async (req, res) => {
+  console.log(req.body)
+})
+
 router.put('/all', async (req, res) => {
   // const tasks = Task.updateMany(req.body, { index: true })
   res.send(req.body)

@@ -5,6 +5,16 @@
     border-bottom: 1px solid #f2f2f2;
     box-sizing: border-box;
 
+    .task-content-text {
+      line-height: 1.6;
+    }
+
+    .placeholder {
+      padding: 10px;
+      background: #ffff11;
+      box-sizing: border-box;
+    }
+
     .actions-container {
       margin-left: auto;
 
@@ -28,9 +38,9 @@
     }
   }
 
-  .placeholder {
-    padding: 10px;
-    background: #ffff11;
-    box-sizing: border-box;
+  .task-edit-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #0078d4;
   }
 }

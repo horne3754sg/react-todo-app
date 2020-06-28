@@ -38,6 +38,7 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='container'>
+          <h1>My Tasks</h1>
           <TaskList
             tasks={this.state.tasks}
             updateTasks={this.updateTasks}

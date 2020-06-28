@@ -17,6 +17,14 @@ class EditTaskForm extends Form {
     title: Joi.string().label('Title').required(),
   }
 
+  async populateTask() {
+    this.setState({ data: this.props.task })
+  }
+
+  async componentDidMount() {
+    await this.populateTask()
+  }
+
   doSubmit = async () => {
     // const tasks = this.props.tasks
     // // save the new task
@@ -29,31 +37,27 @@ class EditTaskForm extends Form {
   }
 
   render() {
-    const { task } = this.props
-    // console.log(task.title)
+    const { onCancel } = this.props
     return (
-      <div>
-        <form>
-          {this.renderInput({
-            name: 'title',
-            placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
-            value: task.title,
+      <form>
+        {this.renderInput({
+          name: 'title',
+          placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
+        })}
+        <div className='button-group'>
+          {this.renderButton('Save Task', {
+            classes: 'primary-btn',
+            fieldName: 'save-task',
+            requiredValidation: true,
+            onClick: this.handleSubmit,
           })}
-          <div className='button-group'>
-            {this.renderButton('Add Task', {
-              classes: 'primary-btn',
-              fieldName: 'add-task',
-              requiredValidation: true,
-              onClick: this.handleSubmit,
-            })}
-            {this.renderButton('Cancel', {
-              classes: 'cancel-btn text-btn',
-              fieldName: 'cancel',
-              onClick: this.props.onCancel,
-            })}
-          </div>
-        </form>
-      </div>
+          {this.renderButton('Cancel', {
+            classes: 'cancel-btn text-btn',
+            fieldName: 'cancel',
+            onClick: onCancel,
+          })}
+        </div>
+      </form>
     )
   }
 }
