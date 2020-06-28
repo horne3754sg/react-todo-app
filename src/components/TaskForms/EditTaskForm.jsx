@@ -6,6 +6,8 @@ import { saveTask } from '../../services/taskService'
 
 import './Forms.scss'
 
+// TODO - focus on input when clicking edit
+// TODO - update tasks in the APP state once saved
 class EditTaskForm extends Form {
   state = {
     data: {
@@ -49,7 +51,7 @@ class EditTaskForm extends Form {
           placeholder: 'e.g. Attend Death star destruction meeting at 2pm',
         })}
         <div className='button-group'>
-          {this.renderButton('Save Task', {
+          {this.renderButton('Save', {
             classes: 'primary-btn',
             fieldName: 'save-task',
             requiredValidation: true,
