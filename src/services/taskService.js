@@ -15,7 +15,7 @@ export function saveTask(task) {
   if (task._id) {
     const body = { ...task }
     delete body._id
-    return http.put(taskUrl(task._id))
+    return http.put(taskUrl(task._id), body)
   }
 
   // otherwise save as new

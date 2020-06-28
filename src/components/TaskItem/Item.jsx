@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import EditTaskForm from '../TaskForms/EditTaskForm'
 
 import './Item.scss'
 
 class TaskItem extends Component {
   state = {
-    showForm: false,
+    isEditing: false,
   }
 
   toggleEditForm = () => {
-    const showForm = !this.state.showForm
-    this.setState({ showForm })
+    const isEditing = !this.state.isEditing
+    this.setState({ isEditing })
   }
 
   render() {
@@ -25,23 +25,27 @@ class TaskItem extends Component {
         // onDragEnd={(event) => props.onDragEnd(event)}
       >
         <div className='task-container'>
-          <div className='content-container'>
-            <div className='task-content-text'>{task.title}</div>
-          </div>
-          <div className='actions-container'>
-            <button className='edit' onClick={this.toggleEditForm}>
-              Edit
-            </button>
-            <button className='delete' onClick={() => onDelete(task._id)}>
-              Delete
-            </button>
-          </div>
+          {!this.state.isEditing && (
+            <Fragment>
+              <div className='content-container'>
+                <div className='task-content-text'>{task.title}</div>
+              </div>
+              <div className='actions-container'>
+                <button className='edit' onClick={this.toggleEditForm}>
+                  Edit
+                </button>
+                <button className='delete' onClick={() => onDelete(task._id)}>
+                  Delete
+                </button>
+              </div>
+            </Fragment>
+          )}
+          {this.state.isEditing && (
+            <div className='task-edit-container'>
+              <EditTaskForm task={task} onCancel={this.toggleEditForm} />
+            </div>
+          )}
         </div>
-        {this.state.showForm && (
-          <div className='task-edit-container'>
-            <EditTaskForm task={task} onCancel={this.toggleEditForm} />
-          </div>
-        )}
       </li>
     )
   }

@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "joi-browser": "^13.4.0",
+    "joi-objectid": "^3.0.1",
     "mongoose": "^5.9.16",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -1,5 +1,6 @@
 import React from 'react'
 import Joi from 'joi-browser'
+
 import Form from '../common/form'
 import { saveTask } from '../../services/taskService'
 
@@ -8,32 +9,35 @@ import './Forms.scss'
 class EditTaskForm extends Form {
   state = {
     data: {
+      _id: '',
       title: '',
     },
     errors: {},
   }
 
   schema = {
+    _id: Joi.string().required(),
     title: Joi.string().label('Title').required(),
   }
 
   async populateTask() {
-    this.setState({ data: this.props.task })
+    this.setState({ data: this.mapToViewModel(this.props.task) })
   }
 
   async componentDidMount() {
     await this.populateTask()
   }
 
+  mapToViewModel(task) {
+    return {
+      _id: task._id,
+      title: task.title,
+    }
+  }
+
   doSubmit = async () => {
-    // const tasks = this.props.tasks
-    // // save the new task
-    // const { data: newTask } = await saveTask(this.state.data)
-    // tasks.push(newTask)
-    // // update the tasks which will refesh the view
-    // this.props.updateTasks(tasks)
-    // // close the form
-    // this.props.onCancel()
+    await saveTask(this.state.data)
+    this.props.onCancel()
   }
 
   render() {

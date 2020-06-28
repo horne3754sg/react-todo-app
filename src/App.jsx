@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TaskList from './components/TaskList/List'
 import TaskControls from './components/TaskControls/Controls'
-import { getTasks, saveAllTasks } from './services/taskService'
+import { getTasks } from './services/taskService'
 
 import './Reset.scss'
 import './App.scss'

@@ -30,11 +30,19 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-  console.log(req.body)
+  const { error } = validate(req.body)
+  if (error) return res.status(400).send(error.details[0].message)
+
+  const task = await Task.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+  })
+
+  if (!task) return res.status(404).send('The tasks could not be saved')
+
+  res.send(task)
 })
 
 router.put('/all', async (req, res) => {
-  // const tasks = Task.updateMany(req.body, { index: true })
   res.send(req.body)
 })
 
